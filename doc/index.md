@@ -164,8 +164,6 @@ post_deploy:
 
 Automate will create the following directory structure on the remote server:
 
-
-
 ```BASH
 /your/project/path
 |--releases
@@ -180,35 +178,86 @@ Automate will create the following directory structure on the remote server:
 |--current -> /your/project/path/releases/20150513120631
 ```
 
-This is the schema of all your project's architecture 
+This is the schema of all your project's architecture
 You have to target your domain name in the folder `/your/project/path/current/.`
 
-Each deployment will create a new subdirectory in the releases directory. Once the deployment is finished, a symlink named "current" will indicate the new version.
-
-
-
-
---
+Each deployment will create a new subdirectory in the releases directory. Once the deployment is finished, a symlink named "current" will indicate the new version. 
 
 # Launching a Deployment
+
+## From your desktop
 
 The following command allows you to launch the deployment on the remote server(s)
 
 ```bash
-php automate.phar deploy ‹platform› [gitref]
+php automate.phar deploy development master
 ```
 
-### platform
+```bash
+php automate.phar deploy ‹platform› [gitref] -c [path_of_config_file]
+```
+
+ - **platform**
 
 The target platform name (e.g. development)
 
-### gitref (optional)
+ - **gitref (optional)**
 
 The branch, the tag, or the commit to be deployed.
 By default Automate will use the « default_branch » in the configuration file
 
+ - **-c [path_of_config_file] (optional)**
 
-By default, Automate will search for the file « .automate.yml » in the current directory. You can specify it with the option « -c /path/to/.automate.yml »      
+By default, Automate will search for the file `.automate.yml` in the current directory. You can specify it with the option ` -c /path/to/.automate.yml `
+      
+## Automatically from your Gitlab or Travis environment      
 
-# Arborescence of your project to the server remote
+It's possible directly in Gitlab or Travis only to lunch automatically Automate after each `push` or `merge request` 
+For this, just add the file `.gitlab-ci.yml` in the root path of your project. 
 
+```YAML
+stages:
+  - ...
+  - deploy
+  
+deploy:development:
+  stage: deploy
+  image: "php"                                  #Use the good Docker container image you need 
+  only:
+    - master
+  script:
+    - "php automate.phar deploy development"   #Lunch the job ! 
+  environment:
+    name: development
+    url: http://prod-1.exemple.com
+```
+
+# Notification plugins
+## Gitlab notification
+
+To receive a notification `success` or `failed` after each deployment in your "Gitlab Trigger Job", you can easely add this sample in your `.automate.yml` file : 
+
+```YAML
+
+```
+
+```YAML
+deploy_from_remote:
+  stage: deploy
+  environment:
+    name: "$ENVIRONMENT_NAME"
+  script:
+    - if [ -n "${DEPLOY_FAILED_MSG}" ]; then echo "$DEPLOY_FAILED_MSG";exit 1; fi
+    - if [ -n "${DEPLOY_SUCCESS_MSG}" ]; then echo "$DEPLOY_SUCCESS_MSG";exit 0; fi
+```
+## Plugin Slack
+
+## Plugin Cache
+
+```YAML
+plugins:
+    cache_tool:
+        opcache: true
+        apcu: false
+        apc: false
+```

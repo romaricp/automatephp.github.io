@@ -225,7 +225,7 @@ stages:
   
 deploy:development:
   stage: deploy
-  image: "php"                                  #Use the good Docker container image you need 
+  image: "php"                                 #Use the right Docker container image you need 
   only:
     - master
   script:
@@ -235,14 +235,31 @@ deploy:development:
     url: http://prod-1.exemple.com
 ```
 
-# Notification plugins
-## Gitlab notification
+# Plugins
+
+## Notification
+By default some message are already setting in Automate : 
+ - `:hourglass: [Automate] prod-exemple-front-01 Deployment start`
+ - `:sunny: [Automate] prod-exemple-front-01 End of deployment with success`
+ - `:exclamation: [Automate] prod-exemple-front-01 Deployment failed with error`
+
+### Gitlab
 
 To receive a notification `success` or `failed` after each deployment in your "Gitlab Trigger Job", you can easely add this sample in your `.automate.yml` file : 
 
 ```YAML
-
+plugins:
+    ...
+    gitlab:
+        uri: "https://gitlab.com"
+        id_project: 302
+        token_trigger: "4502af4576a877e020e383d9eeacbc"
+        messages:                            # Optional, see the "Plugins -> Notification" Section
+            success: "Success great !"
+            failed: "Failed deployment"
 ```
+
+You have to add this job in the .gitlab-ci.yml file :
 
 ```YAML
 deploy_from_remote:
@@ -253,9 +270,34 @@ deploy_from_remote:
     - if [ -n "${DEPLOY_FAILED_MSG}" ]; then echo "$DEPLOY_FAILED_MSG";exit 1; fi
     - if [ -n "${DEPLOY_SUCCESS_MSG}" ]; then echo "$DEPLOY_SUCCESS_MSG";exit 0; fi
 ```
-## Plugin Slack
+### Plugin Slack
 
-## Plugin Cache
+```YAML
+plugins:
+    ...
+    slack:
+        hook_uri: "https://hooks.slack.com/services/xxxxx/yyyyy/zzzzz"
+        messages:                            # Optional, see the "Plugins -> Notification" Section
+            success: "Success great !"
+            failed: "Failed deployment"
+```
+
+### Plugin Gitter
+
+```YAML
+plugins:
+    ...
+    gitter:
+        token: 132456
+        room: 654321
+        messages:                            # Optional, see the "Plugins -> Notification" Section
+            success: "Success great !"
+            failed: "Failed deployment"
+```
+
+## Clear cache system
+
+With Automate you got the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this : 
 
 ```YAML
 plugins:

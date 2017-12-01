@@ -266,7 +266,7 @@ deploy_from_remote:
     - if [ -n "${DEPLOY_FAILED_MSG}" ]; then echo "$DEPLOY_FAILED_MSG";exit 1; fi
     - if [ -n "${DEPLOY_SUCCESS_MSG}" ]; then echo "$DEPLOY_SUCCESS_MSG";exit 0; fi
 ```
-### Plugin Slack
+### Slack
 
 ```YAML
 plugins:
@@ -278,7 +278,7 @@ plugins:
             failed: "Failed deployment"
 ```
 
-### Plugin Gitter
+### Gitter
 
 ```YAML
 plugins:

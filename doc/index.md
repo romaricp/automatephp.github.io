@@ -2,8 +2,8 @@
 title: Documentation
 ---
 
-Automate allows to you to automate your deployments to remote Linux servers simply.
-You can use Automate from your workstation or through an integration server like Travis or Gitlab-ci
+Automate allows you to automate your deployments to remote Linux servers simply.
+You can use Automate from your workstation or through an integration server like Travis or Gitlab-ci.
 
 # Installation 
 
@@ -78,18 +78,17 @@ post_deploy:
 repository: git@github.com:symfony/symfony-demo.git
 ```
 
-The Git repository URL to be deployed. If you use a repository in https you can use a variable with the notation %variable_name% for the password 
+Address of your git repository. If you use a repository in https you can use a variable with the notation %variable_name% for the password like this: 
 
-Sample : 
 ```YAML
 repository: https://user:%git_password%@exemple.com
 ```
 
 ### platforms
 
-The list of platforms.
-You can configure several platforms.
-A project must have at least one platform. 
+List of platforms.
+
+You can configure several platforms ; a project must have at least one platform. 
 
 ```YAML
 platforms:
@@ -102,7 +101,7 @@ platforms:
                 user: automate             # The SSH user to be used for the deployment
                 password: %prod_password%  # Read more below in "The SSH password" section 
                 path: /home/wwwroot/       # The path on the remote server
-                port : 22                  # The SSH port (default:22)    
+                port: 22                  # The SSH port (default:22)    
             prod-exemple-front-02:
                 host: prod-2.exemple.com
                 user: automate
@@ -113,11 +112,13 @@ platforms:
 **The SSH password** 
 
 You can use a variable with the notation %variable_name% 
-If one variable is detected Automate will search for the value in an environment variable « AUTOMATE__variable_name » 
-If the environment variable does not exist, Automate will ask you to provide your password upon each deployment through the console.
-
+If one variable is detected Automate will search for the value in an environment variable « AUTOMATE__variable_name ». 
+If the environment variable doesn't exist, Automate will ask to you to provide your password upon each deployment through in your terminal. 
 
 ### shared_files
+
+The list of files to be shared with releases. 
+For example, some parameters files,..
 
 ```YAML
 shared_files:
@@ -126,43 +127,40 @@ shared_files:
     - ... 
 ```
 
-The list of files to be shared with releases. 
-For example : parameters files,..
-
 ### shared_folders
+
+The list of folders to be shared between releases.
+For example some uploaded pictures,..
 
 ```YAML
 shared_files:
     - app/data
     - ... 
 ```
-The list of folders to be shared between releases.
-For example : uploaded images,..
 
 ### pre_deploy
 
-The list of commands to be launched on remote servers **after downloading sources** and **before** setting up shared folders and files.
+The list of commands to be launched to remote servers **after downloading sources** and **before** setting up shared folders and files.
 
 ### on_deploy
 
-The list of commands to be launched on remote servers **before deployment**.
+The list of commands to be launched to remote servers **before deployment**.
 
 ### post_deploy
 
-The list of commands to be launched on remote servers **after deployment**.
+The list of commands to be launched to remote servers **after deployment**.
 
-**Option** : Possibility to execute only one command just to one remote server with :
+**Option**: Possibility to execute only one command just to one remote server with:
 
 ```YAML
 post_deploy:
-    - "php bin/console doctrine:schema:update --force"
     only: eddv-exemple-front-01                     
     - "php bin/console doctrine:cache:clear-result"
 ```
                   
 # Server Configuration
 
-Automate will create the following directory structure on the remote server:
+Automate will create the following directory structure to the remote server:
 
 ```BASH
 /your/project/path
@@ -179,18 +177,15 @@ Automate will create the following directory structure on the remote server:
 ```
 
 This is the schema of all your project's architecture
-You have to target your domain name in the folder `/your/project/path/current/.`
+You have to target your domain name inside the folder `/your/project/path/current/.`
 
 Each deployment will create a new subdirectory in the releases directory. Once the deployment is finished, a symlink named "current" will indicate the new version. 
 
-# Launching a Deployment
+# Launching a deployment
 
 ## From your desktop
 
-The following command allows you to launch the deployment on the remote server(s)
-
-
-
+The following command allows you to launch the deployment on remote server(s)
 
 ```bash
 php automate.phar deploy development master
@@ -215,7 +210,8 @@ By default, Automate will search for the file `.automate.yml` in the current dir
       
 ## Automatically from your Gitlab or Travis environment      
 
-It's possible directly in Gitlab or Travis only to lunch automatically Automate after each `push` or `merge request` 
+It's possible directly in Gitlab or Travis only to lunch automatically Automate after each `git push` or `merge request`. 
+
 For this, just add the file `.gitlab-ci.yml` in the root path of your project. 
 
 ```YAML
@@ -238,14 +234,14 @@ deploy:development:
 # Plugins
 
 ## Notification
-By default some message are already setting in Automate : 
- - `:hourglass: [Automate] prod-exemple-front-01 Deployment start`
- - `:sunny: [Automate] prod-exemple-front-01 End of deployment with success`
- - `:exclamation: [Automate] prod-exemple-front-01 Deployment failed with error`
+By default some messages are already setting in Automate: 
+ - Start: `:hourglass: [Automate] prod-exemple-front-01 Deployment start`
+ - Success: `:sunny: [Automate] prod-exemple-front-01 End of deployment with success`
+ - Failed: `:exclamation: [Automate] prod-exemple-front-01 Deployment failed with error`
 
 ### Gitlab
 
-To receive a notification `success` or `failed` after each deployment in your "Gitlab Trigger Job", you can easely add this sample in your `.automate.yml` file : 
+To receive a notification `success` or `failed` after each deployment in your "Gitlab Trigger Job", you can easely add this sample in your `.automate.yml` file and configure with your variables:
 
 ```YAML
 plugins:
@@ -259,7 +255,7 @@ plugins:
             failed: "Failed deployment"
 ```
 
-You have to add this job in the .gitlab-ci.yml file :
+You have to add this job in the .gitlab-ci.yml file:
 
 ```YAML
 deploy_from_remote:
@@ -297,7 +293,7 @@ plugins:
 
 ## Clear cache system
 
-With Automate you got the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this : 
+With Automate you got the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this: 
 
 ```YAML
 plugins:

@@ -24,7 +24,7 @@ php automate.phar update
 # Creating your configuration file
 
 Foremost, you have to create a configuration file for Automate.
-This file is generally located at the root of your project. The name of this file must be `.automate.yml`.
+This file is usually located at the root of your project. The name of this file must be `.automate.yml`.
 
 Here is an example file:
 
@@ -140,15 +140,15 @@ shared_files:
 
 ### pre_deploy
 
-The list of commands to be launched to remote servers **after downloading sources** and **before** setting up shared folders and files.
+The list of commands to be launched on remote servers **after downloading sources** and **before** setting up shared folders and files.
 
 ### on_deploy
 
-The list of commands to be launched to remote servers **before deployment**.
+The list of commands to be launched on remote servers **before deployment**.
 
 ### post_deploy
 
-The list of commands to be launched to remote servers **after deployment**.
+The list of commands to be launched on remote servers **after deployment**.
 
 **Option**: Possibility to execute only one command just to one remote server with:
 
@@ -293,7 +293,7 @@ plugins:
 
 ## Clear cache system
 
-With Automate you got the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this: 
+With Automate you have the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this: 
 
 ```YAML
 plugins:

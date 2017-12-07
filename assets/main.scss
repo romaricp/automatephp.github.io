@@ -3,3 +3,410 @@
 ---
 
 @import "minima";
+
+@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600,700');
+
+@font-face {
+    font-family: 'Menlo';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Menlo Regular'), url('Menlo-Regular.woff') format('woff');
+}
+
+$blue:      #2b3d50;
+$blueGrey:  #3a4b5c;
+$orange:    #fb320b;
+$greyLight: #f7f7f7;
+$greyTxt:   #696a6c;
+$pink:      #e409d2;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    @include rem(16);
+    font-family: "Work Sans";
+    font-weight: 400;
+}
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.btn_blue {
+    width: 160px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid $blue;
+    background: transparent;
+    box-sizing: border-box;
+    padding: 12px 15px 14px;
+    color: $blue;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 1em;
+    @include rem(14);
+    text-decoration: none;
+    transition: all 0.3s;
+    &:visited {
+        color: $blue;
+    }
+    &:hover {
+        background: $blue;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.btn_white {
+    width: 160px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #fff;
+    background: transparent;
+    box-sizing: border-box;
+    padding: 12px 15px 14px;
+    color: #fff;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 1em;
+    @include rem(14);
+    text-decoration: none;
+    transition: all 0.3s;
+    &:visited {
+        color: #fff;
+    }
+    &:hover {
+        background: #fff;
+        color: $blueGrey;
+        text-decoration: none;
+    }
+}
+
+.btn_orange {
+    width: 160px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid $orange;
+    background: $orange;
+    box-sizing: border-box;
+    padding: 12px 15px 14px;
+    color: #fff;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 1em;
+    @include rem(14);
+    text-decoration: none;
+    transition: all 0.3s;
+    &:visited {
+        color: #fff;
+    }
+    &:hover {
+        background: #fff;
+        color: $orange;
+        text-decoration: none;
+    }
+}
+
+.btn_git {
+    margin-left: 20px;
+    i {
+        color: $orange;
+        @include rem(14);
+        margin-right: 4px;
+        transition: all 0.3s;
+    }
+    &.btn_orange i {
+        color: #fff;
+    }
+    &.btn_orange:hover i {
+        color: $orange;
+    }
+    &.btn_white {
+        i { color: #fff; }
+        &:hover i { color: $blueGrey; }
+    }
+}
+
+.home {
+    .logo {
+        background: url(img/logo_automate.png) no-repeat center center transparent;
+        display: block;
+        width: 290px;
+        height: 62px;
+        font-size: 0;
+        margin-bottom: 40px;
+        position: relative;
+        span {
+            font-size: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(img/logo_automateW.png) no-repeat center center transparent;
+            opacity: 0;
+        }
+    }
+
+    .upper_home {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        box-sizing: border-box;
+        flex-direction: row;
+        padding-top: 40px;
+        position: relative;
+        &:not(.card2) { background: $greyLight; }
+        .left, .right {
+            width: 50%;
+            z-index: 2;
+        }
+        &.card2 { display: none; }
+        .right {
+            height: 100vh;
+        }
+        div.ghost {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1;
+        }
+        span.fond {
+            position: absolute;
+            display: block;
+            background: url(img/fond_glob.png) no-repeat center center transparent;
+            width: 1009px;
+            height: 645px;
+            bottom: -85px;
+            right: 12.5%;
+            z-index: 0;
+        }
+        .left {
+            padding-top: 70px;
+            padding-left: 145px;
+            padding-right: 110px;
+            box-sizing: border-box;
+            .info {
+                position: relative;
+                left: 0;
+                opacity: 1;
+                &.info2 {
+                    left: -130%;
+                    opacity: 0;
+                }
+            }
+            h2 {
+                margin: 0;
+                margin-top: 80px;
+                margin-bottom: 40px;
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                color: $blue;
+                @include rem(35);
+                font-family: "Anton";
+                font-weight: 400;
+                line-height: 1em;
+            }
+            p {
+                @include rem(18);
+                color: $greyTxt;
+                line-height: 1.75em;
+                margin: 0 0 45px;
+            }
+        }
+        #term {
+            position: relative;
+            .asciinema-player-wrapper {
+                text-align: left;
+                padding: 50px 20px 20px;
+                background: url(img/pattern1.png) repeat top left transparent;
+                border-radius: 8px;
+                height: 100vh;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                box-sizing: border-box;
+            }
+            .asciinema-terminal {
+                background: url(img/pattern1.png) repeat top left transparent;
+                display: block;
+                height: 100%;
+                border: none;
+            }
+            div.line_ellipse {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-size: 0;
+                z-index: 1;
+                span {
+                    background: url(img/ico_ellipse.png) no-repeat center center transparent;
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 12px;
+                    height: 12px;
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+    .container_advantages {
+        .btn_git {
+            display: block;
+            margin: 60px auto;
+        }
+        .advantages {
+            padding-top: 145px;
+            clear: both;
+            display: block;
+            width: 100%;
+            text-align: center;
+            @include clearfix;
+            box-sizing: border-box;
+            padding-left: 9.25%;
+            padding-right: 9.25%;
+            .item {
+                float: left;
+                display: block;
+                box-sizing: border-box;
+                width: calc(100% / 3);
+                text-align: left;
+                padding: 0 3.25%;
+                &:not(:last-child) { margin-bottom: 50px; }
+                &:nth-child(3n+1) { clear: both; }
+                &:nth-child(7) {
+                    float: none;
+                    margin: 0 auto;
+                    text-align: center;
+                    width: auto;
+                    max-width: 820px;
+                    padding: 0;
+                }
+                h2 {
+                    display: block;
+                    font-weight: 600;
+                    font-family: "Work Sans";
+                    @include rem(21);
+                    line-height: 1em;
+                    margin: 0;
+                    margin-bottom: 20px;
+                    position: relative;
+                    box-sizing: border-box;
+                    color: $blue;
+                    display: inline-block;
+                    vertical-align: baseline;
+                    &::before {
+                        content: "/";
+                        font-family: "Work Sans";
+                        font-weight: 400;
+                        color: $orange;
+                        @include rem(23);
+                        display: inline-block;
+                        vertical-align: baseline;
+                        margin-right: 7px;
+                    }
+                }
+                p {
+                    margin: 0;
+                    line-height: 1.75em;
+                    @include rem(15);
+                    color: $greyTxt;
+
+                }
+            }
+        }
+    }
+    .container_starting {
+        background: url(img/bg_starting.png) no-repeat center top #eeeded;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 100px;
+        padding-bottom: 60px;
+        .starting {
+            text-align: center;
+            h2 {
+                @include rem(35);
+                color: $blue;
+                font-family: "Anton";
+                font-weight: 400;
+                line-height: 1em;
+                margin: 0 0 15px;
+            }
+            p {
+                font-family: "Work Sans";
+                font-weight: 400;
+                color: $greyTxt;
+                @include rem(18);
+            }
+            div.command {
+                display: block;
+                width: 840px;
+                box-sizing: border-box;
+                margin: 30px auto;
+                background: url(img/pattern1.png) repeat left top transparent;
+                text-align: center;
+                color: #fff;
+                font-family: "Menlo";
+                font-weight: 400;
+                @include rem(13);
+                line-height: 1em;
+                padding: 38px 25px;
+                span { color: $pink; }
+            }
+        }
+    }
+}
+
+footer {
+    background: $blueGrey;
+    @include clearfix;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 50px 11.88%;
+    .left {
+        float: left;
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            font-family: "Work Sans";
+            @include rem(18);
+            font-weight: 400;
+            margin-right: 15px;
+        }
+        a {
+            font-size: 0;
+            display: inline-block;
+            vertical-align: middle;
+            width: 127px;
+            height: 69px;
+            background: url(img/logo_eolas.png) no-repeat center center transparent;
+            opacity: 1;
+            transition: all 0.3s;
+            &:hover {
+                opacity: 0.75;
+            }
+        }
+    }
+    .right {
+        float: right;
+        padding: 15px 0;
+        a:last-child { margin-left: 20px; }
+    }
+}

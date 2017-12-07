@@ -3,86 +3,203 @@ layout: home
 ---
 
 <div class="home">
+    <div class="container_code">
+        <div class="spacing"></div>
+        <div class="upper_home card1">
+            <span class="fond"></span>
+            <div class="ghost"></div>
+            <div class="left">
+                <div class="header">
+                    <h1 class="logo">Automate, A deployment tool<span></span></h1>
+                    <div class="line">
+                        <a class="btn_blue" href="{{ site.baseurl }}{% link doc/index.md %}">Documentation</a>
+                        <a class="btn_blue btn_git" href="https://github.com/automatephp/automatephp.github.io/blob/master/doc/index.md">
+                            <i class="fa fa-github "></i>Github
+                        </a>
+                    </div>
+                </div>
 
-	<button id="flip">Flip</button>
+                <div class="info">
+                    <h2>One command line !</h2>
+                    <p>Automate allows you to automate your deployments to remote Linux servers simply. You can use Automate from your workstation or through an integration server like Travis or Gitlab-ci.</p>
+                    <a href="#" class="btn_orange">Discover !</a>
+                </div>
+                <div class="info info2">
+                    <h2>One YAML file to organize everything</h2>
+                    <p>Define all linux environment you need and all command line on each to deploy your application simply from the repository Git.</p>
+                    <a href="#" class="btn_orange">Features</a>
+                </div>
+            </div>
+
+            <div class="right">
+                <div id="card">
+                    <div id="term" class="front">
+                        <div class="line_ellipse">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div id="player-container"></div>
+
+                    </div>
+                    <div class="back">
+                        <pre>
+                            <code class="highlight">
+                                repository: https://github.com/julienj/symfony-demo.git
+
+                                platforms:
+                                    dev:
+                                        default_branch: master
+                                        max_releases: 3
+                                        servers:
+                                            dddv-exemple-front-01:
+                                                host: dev.exemple.com
+                                                user: julien
+                                                password: %dev_password%
+                                                path: /home/julien/automate
+                                    production:
+                                        default_branch: production
+                                        servers:
+                                            eddv-exemple-front-01:
+                                                host: 12.9.9.1
+                                                user: user
+                                                password: %prod_password%
+                                                path: /home/wwwroot/exemple
+                                            eddv-exemple-front-02:
+                                                host: 12.9.9.2
+                                                user: user
+                                                password: %prod_password%
+                                                path: /home/wwwroot/exemple
+
+                                shared_files:
+                                    - app/config/parameters.yml
+
+                                shared_folders:
+                                    - app/data
+
+                                on_deploy:
+                                    - "composer install"
+                                    - "setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX var"
+                                    - "setfacl -dR -m u:www-data:rwX -m u:`whoami`:rwX var"
+                                    - "php bin/console cache:clear --env=prod --no-debug"
+                                post_deploy:
+                                    - "php bin/console doctrine:schema:update --force"
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container_advantages">
+        <div class="advantages">
+            <div class="item">
+                <h2>Consistency</h2>
+                <p>This is the end of much inconsistency between yours platforms, everything is deploying in parallel. If one failed, all others are stop immediately.</p>
+            </div>
+            <div class="item">
+                <h2>Atomic deploys</h2>
+                <p>Your application is integrally build, then deploy instantly with symlinks.</p>
+            </div>
+            <div class="item">
+                <h2>Zero downtime</h2>
+                <p>As long as the new deployment is not succesful, the last one stays online until the last moment.</p>
+            </div>
+            <div class="item">
+                <h2>Deploy to multiples servers</h2>
+                <p>Configure all your remotes servers: development, pre-production and production one in the same place. Automate take care of the rest!</p>
+            </div>
+            <div class="item">
+                <h2>Deploy any project</h2>
+                <p>Automate can be work with any type of project! Php, JS, Ruby,.. It’s a polyvalent Automate ! ;) </p>
+            </div>
+            <div class="item">
+                <h2>Travis / Gitlab-ci</h2>
+                <p>You can use Automate from your workstation or through an integration server like Travis or Gitlab-ci.</p>
+            </div>
+            <div class="item">
+                <h2>Best practice</h2>
+                <p>Automate has very clean and well tested code. <br> The repository is watched be many code quality tools, and every pull request is also checked by QA tools.</p>
+            </div>
+        </div>
+        <a href="#" class="btn_orange btn_git"><i class="fa fa-github "></i>Github</a>
+    </div>
+
+    <div class="container_starting">
+        <div class="starting">
+            <h2>Get starting</h2>
+            <p>You can download the latest version of Automate with the following command</p>
+            <div class="command">
+                <span>curl -LSs https</span>://automatephp.github.io/automate/installer.php | php
+            </div>
+            <a href="#" class="btn_orange">Documentation</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#card").flip({
+          trigger: 'manual',
+          axis: 'x'
+        });
+
+        var controller = new ScrollMagic.Controller();
+        var scrolling = "PAUSED";
+
+        $(function () { // wait for document ready
+
+            var tl = new TimelineMax()
+            .add(TweenMax.to(".upper_home .ghost", 1,{backgroundColor: "#2b3d50"}),0)
+            .add(TweenMax.to(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#fff"}),0)
+            .add(TweenMax.to(".upper_home .line a", 1, {color: "#fff", borderColor: "#fff"}),0)
+            .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
+            .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}))
+            .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))
+            .add(TweenMax.to('.upper_home .info2', 1, {left: "0", opacity: "1"}));
+
+            // build scene
+            var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "100%"})
+                .setPin(".upper_home")
+                .setTween(tl)
+                .addTo(controller)
+                .on("end", function (e) {
+
+                })
+                .on("progress", function (e) {
+                    var percentage = (e.progress.toFixed(3) * 100);
+                    if(e.target.controller().info("scrollDirection") != scrolling) {
+                        scrolling = e.target.controller().info("scrollDirection");
+                        $('#card').flip('toggle');
+                    }
+                    //console.log(e.target.controller().info("scrollDirection"));
+                });
+
+        });
+
+            // var scene = new ScrollMagic.Scene({triggerElement: "#trigger", duration: 200})
+            //        .addTo(controller)
+            //        .on("update", function (e) {
+            //            $("#scrollDirection").text(e.target.controller().info("scrollDirection"));
+            //        })
+            //        .on("enter leave", function (e) {
+            //            $("#state").text(e.type == "enter" ? "inside" : "outside");
+            //        })
+            //        .on("start end", function (e) {
+            //            $("#lastHit").text(e.type == "start" ? "top" : "bottom");
+            //        })
 
 
-	<a href="{{ site.baseurl }}{% link doc/index.md %}">Doc</a>
+        asciinema.player.js.CreatePlayer('player-container', '/assets/automate.cast', {
+            'autoPlay': true,
+            'loop': true,
+            'speed': 1,
+            'cols': 120,
+            'rows': 47,
+            'fontSize': "small",
+            'theme': "tango"
+        });
 
-	<br><br><br>
-
-	<div id="card"> 
-		<div id="term" class="front">
-			 <asciinema-player 
-			 	src="{{ "/assets/automate.cast" | relative_url }}" 
-		        autoplay="true"
-		        loop="true"
-		        speed="1"
-		        cols="120"
-		        rows="30"
-		        font-size="small"
-				theme="tango"
-		        >    
-		    </asciinema-player>		
-		</div>
-	    <div class="back">
-	    	<pre>
-	    		<code class="language-yaml">
-repository: https://github.com/julienj/symfony-demo.git
-
-platforms:
-    dev:
-        default_branch: master
-        max_releases: 3
-        servers:
-            dddv-exemple-front-01:
-                host: dev.exemple.com
-                user: julien
-                password: %dev_password%
-                path: /home/julien/automate
-    production:
-        default_branch: production
-        servers:
-            eddv-exemple-front-01:
-                host: 12.9.9.1
-                user: user
-                password: %prod_password%
-                path: /home/wwwroot/exemple
-            eddv-exemple-front-02:
-                host: 12.9.9.2
-                user: user
-                password: %prod_password%
-                path: /home/wwwroot/exemple
-
-shared_files:
-    - app/config/parameters.yml
-
-shared_folders:
-    - app/data
-
-on_deploy:
-    - "composer install"
-    - "setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX var"
-    - "setfacl -dR -m u:www-data:rwX -m u:`whoami`:rwX var"
-    - "php bin/console cache:clear --env=prod --no-debug"
-post_deploy:
-    - "php bin/console doctrine:schema:update --force"
-	    		</code>
-	    	</pre>
-	  	</div> 
-	</div>
-
-
-
-	<script type="text/javascript">
-		$("#card").flip({
-		  trigger: 'manual'
-		});
-
-		$("#flip").click(function () {
-			$("#card").flip('toggle');
-		});
-
-	</script>
+    </script>
 
 </div>

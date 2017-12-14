@@ -1,5 +1,6 @@
 ---
-title: Documentation
+title: Get Starting
+permalink: /docmd
 ---
 
 Automate allows you to automate your deployments to remote Linux servers simply.
@@ -69,7 +70,7 @@ on_deploy:
     - "setfacl -dR -m u:www-data:rwX -m u:`whoami`:rwX var"
 post_deploy:
     - "php bin/console doctrine:schema:update --force"
-    only: eddv-exemple-front-01                     
+    only: eddv-exemple-front-01
     - "php bin/console doctrine:cache:clear-result"
 ```
 
@@ -78,7 +79,7 @@ post_deploy:
 ### repository
 
 
-The Git repository URL to be deployed. If you use a repository in https you can use a variable with the notation %variable_name% for the password 
+The Git repository URL to be deployed. If you use a repository in https you can use a variable with the notation %variable_name% for the password
 Example : https://user:%git_password%@exemple.com
 
 ### platforms
@@ -111,7 +112,7 @@ Option : Possibility to execute only one command just to one remote server with 
 
 only: eddv-exemple-front-01
 - "php bin/console doctrine:cache:clear-result"
-                  
+
 ## Platform
 
 ### default_branch
@@ -124,7 +125,7 @@ The number of releases to be kept on remote servers.
 
 ### servers
 
-The list of servers. If the platform contains several servers, the deployment will be carried out simultaneously on the all the servers. 
+The list of servers. If the platform contains several servers, the deployment will be carried out simultaneously on the all the servers.
 A platform must have at least one server.
 
 ## Server
@@ -138,10 +139,10 @@ The domain name or the server's IP
 The SSH user to be used for the deployment
 # password
 
-The SSH password. 
+The SSH password.
 
-You can use a variable with the notation %variable_name% 
-If one variable is detected Automate will search for the value in an environment variable « AUTOMATE__variable_name » 
+You can use a variable with the notation %variable_name%
+If one variable is detected Automate will search for the value in an environment variable « AUTOMATE__variable_name »
 If the environment variable does not exist, Automate will ask you to provide your password upon each deployment through the console.
 
 # path
@@ -150,7 +151,7 @@ The path on the remote server
 
 #port
 
-The SSH port (defaul 22)    
+The SSH port (defaul 22)
 
 # Server Configuration
 
@@ -164,7 +165,7 @@ Automate will create the following directory structure on the remote server:
 |  |--...
 |--current -> /your/project/path/releases/20150513120631
 ```
-          
+
 Each deployment will create a new subdirectory in the releases directory. Once the deployment is finished, a symlink named "current" will indicate the new version.
 
 # Launching a Deployment
@@ -185,4 +186,4 @@ The branch, the tag, or the commit to be deployed.
 By default Automate will use the « default_branch » in the configuration file
 
 
-By default, Automate will search for the file « .automate.yml » in the current directory. You can specify it with the option « -c /path/to/.automate.yml »      
+By default, Automate will search for the file « .automate.yml » in the current directory. You can specify it with the option « -c /path/to/.automate.yml »

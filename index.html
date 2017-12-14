@@ -12,7 +12,7 @@ layout: home
                 <div class="header">
                     <h1 class="logo">Automate, A deployment tool<span></span></h1>
                     <div class="line">
-                        <a class="btn_blue" href="{{ site.baseurl }}{% link doc/index.md %}">Documentation</a>
+                        <a class="btn_blue" href="{{ site.baseurl }}{% link doc/index.html %}">Documentation</a>
                         <a class="btn_blue btn_git" href="https://github.com/automatephp/automatephp.github.io/blob/master/doc/index.md">
                             <i class="fa fa-github "></i>Github
                         </a>
@@ -44,48 +44,7 @@ layout: home
 
                     </div>
                     <div class="back">
-                        <pre>
-                            <code class="highlight">
-                                repository: https://github.com/julienj/symfony-demo.git
-
-                                platforms:
-                                    dev:
-                                        default_branch: master
-                                        max_releases: 3
-                                        servers:
-                                            dddv-exemple-front-01:
-                                                host: dev.exemple.com
-                                                user: julien
-                                                password: %dev_password%
-                                                path: /home/julien/automate
-                                    production:
-                                        default_branch: production
-                                        servers:
-                                            eddv-exemple-front-01:
-                                                host: 12.9.9.1
-                                                user: user
-                                                password: %prod_password%
-                                                path: /home/wwwroot/exemple
-                                            eddv-exemple-front-02:
-                                                host: 12.9.9.2
-                                                user: user
-                                                password: %prod_password%
-                                                path: /home/wwwroot/exemple
-
-                                shared_files:
-                                    - app/config/parameters.yml
-
-                                shared_folders:
-                                    - app/data
-
-                                on_deploy:
-                                    - "composer install"
-                                    - "setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX var"
-                                    - "setfacl -dR -m u:www-data:rwX -m u:`whoami`:rwX var"
-                                    - "php bin/console cache:clear --env=prod --no-debug"
-                                post_deploy:
-                                    - "php bin/console doctrine:schema:update --force"
-                            </code>
+                        <pre class="line-numbers" data-src="info.yaml">
                         </pre>
                     </div>
                 </div>
@@ -150,7 +109,7 @@ layout: home
         $(function () { // wait for document ready
 
             var tl = new TimelineMax()
-            .add(TweenMax.to(".upper_home .ghost", 1,{backgroundColor: "#2b3d50"}),0)
+            .add(TweenMax.to(".upper_home .ghost", 2,{backgroundColor: "#2b3d50"}),0)
             .add(TweenMax.to(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#fff"}),0)
             .add(TweenMax.to(".upper_home .line a", 1, {color: "#fff", borderColor: "#fff"}),0)
             .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)

@@ -13,8 +13,8 @@
  * Homepage - Terminal
  */
 #card {
-	width: 700px;
-	height: 500px;
+	width: 100%;
+	height: 100vh;
 }
 
 #term .control-bar {
@@ -22,5 +22,17 @@
 }
 
 .back {
-	background: #cccccc;
+	background: url(img/pattern3.png) repeat left top transparent;
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    overflow: hidden;
+    border-bottom-right-radius: 0;
+    pre,code {
+        background-color: transparent;
+        border: none;
+    }
+    pre {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
 }

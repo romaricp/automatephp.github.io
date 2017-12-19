@@ -22,12 +22,12 @@ layout: home
                 <div class="info">
                     <h2>One command line !</h2>
                     <p>Automate allows you to automate your deployments to remote Linux servers simply. You can use Automate from your workstation or through an integration server like Travis or Gitlab-ci.</p>
-                    <a href="#" class="btn_orange">Discover !</a>
+                    <a href="#" class="btnDiscover btn_orange">Discover !</a>
                 </div>
                 <div class="info info2">
                     <h2>One YAML file to organize everything</h2>
                     <p>Define all linux environment you need and all command line on each to deploy your application simply from the repository Git.</p>
-                    <a href="#" class="btn_orange">Features</a>
+                    <a href="#" class="btnFeatures btn_orange">Features</a>
                 </div>
             </div>
 
@@ -44,6 +44,11 @@ layout: home
 
                     </div>
                     <div class="back">
+                        <div class="line_ellipse">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                         <pre class="line-numbers" data-src="info.yaml">
                         </pre>
                     </div>
@@ -81,9 +86,23 @@ layout: home
             <div class="item">
                 <h2>Best practice</h2>
                 <p>Automate has very clean and well tested code. <br> The repository is watched be many code quality tools, and every pull request is also checked by QA tools.</p>
+                <div class="line">
+                    <a href="https://travis-ci.org/automatephp/automate">
+                        <img src="https://travis-ci.org/automatephp/automate.svg?branch=master" alt="">
+                    </a>
+                    <a href="https://insight.sensiolabs.com/projects/d8cbccde-24d4-4909-910f-b7baaaf26f30">
+                        <img src="https://insight.sensiolabs.com/projects/d8cbccde-24d4-4909-910f-b7baaaf26f30/mini.png" alt="">
+                    </a>
+                    <a href="https://scrutinizer-ci.com/g/automatephp/automate/?branch=master">
+                        <img src="https://scrutinizer-ci.com/g/automatephp/automate/badges/quality-score.png?b=master" alt="">
+                    </a>
+                    <a href="https://scrutinizer-ci.com/g/automatephp/automate/?branch=master">
+                        <img src="https://scrutinizer-ci.com/g/automatephp/automate/badges/coverage.png?b=master" alt="">
+                    </a>
+                </div>
             </div>
         </div>
-        <a href="#" class="btn_orange btn_git"><i class="fa fa-github "></i>Github</a>
+        <a href="https://github.com/automatephp/automatephp.github.io/blob/master/doc/index.md" class="btn_orange btn_git"><i class="fa fa-github "></i>Github</a>
     </div>
 
     <div class="container_starting">
@@ -93,7 +112,7 @@ layout: home
             <div class="command">
                 <span>curl -LSs https</span>://automatephp.github.io/automate/installer.php | php
             </div>
-            <a href="#" class="btn_orange">Documentation</a>
+            <a href="{{ site.baseurl }}{% link doc/index.html %}" class="btn_orange">Documentation</a>
         </div>
     </div>
 
@@ -103,37 +122,38 @@ layout: home
           axis: 'x'
         });
 
+        var scrollable = true;
         var controller = new ScrollMagic.Controller();
         var scrolling = "PAUSED";
 
         $(function () { // wait for document ready
 
-            var tl = new TimelineMax()
-            .add(TweenMax.to(".upper_home .ghost", 2,{backgroundColor: "#2b3d50"}),0)
-            .add(TweenMax.to(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#fff"}),0)
-            .add(TweenMax.to(".upper_home .line a", 1, {color: "#fff", borderColor: "#fff"}),0)
-            .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
-            .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}))
-            .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))
-            .add(TweenMax.to('.upper_home .info2', 1, {left: "0", opacity: "1"}));
+            if($(window).width() > 768) {
+                var tl = new TimelineMax()
+                .add(TweenMax.to(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#fff"}),0)
+                .add(TweenMax.to(".upper_home .ghost", 2,{backgroundColor: "#2b3d50"}),1)
+                .add(TweenMax.to(".upper_home .line a", 1, {color: "#fff", borderColor: "#fff"}),0)
+                .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
+                .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}),0)
+                .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))
+                .add(TweenMax.to('.upper_home .info2', 2, {left: "0", opacity: "1"}));
 
-            // build scene
-            var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "100%"})
-                .setPin(".upper_home")
-                .setTween(tl)
-                .addTo(controller)
-                .on("end", function (e) {
+                // build scene
+                var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "100%"})
+                    .setPin(".upper_home")
+                    .setTween(tl)
+                    .addTo(controller)
+                    .on("end", function (e) {
 
-                })
-                .on("progress", function (e) {
-                    var percentage = (e.progress.toFixed(3) * 100);
-                    if(e.target.controller().info("scrollDirection") != scrolling) {
-                        scrolling = e.target.controller().info("scrollDirection");
-                        $('#card').flip('toggle');
-                    }
-                    //console.log(e.target.controller().info("scrollDirection"));
-                });
-
+                    })
+                    .on("progress", function (e) {
+                        var percentage = (e.progress.toFixed(3) * 100);
+                        if(e.target.controller().info("scrollDirection") != scrolling && scrollable) {
+                            scrolling = e.target.controller().info("scrollDirection");
+                            $('#card').flip('toggle');
+                        }
+                    });
+            }
         });
 
             // var scene = new ScrollMagic.Scene({triggerElement: "#trigger", duration: 200})
@@ -157,6 +177,25 @@ layout: home
             'rows': 47,
             'fontSize': "small",
             'theme': "tango"
+        });
+
+        $(".btnDiscover").on("click", function(e){
+            e.preventDefault();
+            $("html, body").animate({
+                scrollTop: ($(".container_advantages").offset().top - $(window).height()),
+                easing: 'linear'
+            }, 1000);
+        });
+
+        $(".btnFeatures").on("click", function(e){
+            e.preventDefault();
+            scrollable = false;
+            $("html, body").animate({
+                scrollTop: $(".container_advantages").offset().top,
+                easing: 'linear'
+            }, 700, function() {
+                scrollable = true;
+            });
         });
 
     </script>

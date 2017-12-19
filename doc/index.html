@@ -230,11 +230,40 @@ By default, Automate will search for the file « .automate.yml » in the current
     });
 
     $(".right .inner h1").each(function() {
+        var hisId = $(this).attr('id');
         var name = $(this).html();
-        var li = "<li>";
+        var li = "<li class='";
+        li += hisId;
+        li += "'>";
         li += name;
         li += "</li>";
         $(".menuDocumentation").append(li);
     });
+
+    $(".menuDocumentation li:not(:first-child)").on("click", function() {
+        var idLink = "#" + $(this).attr('class');
+        $('html, body').animate({
+            scrollTop: $(idLink).offset().top
+        }, 800);
+    });
+
+    $(window).on("load resize scroll", function(){
+        $($(".right h1").get().reverse()).each(function() {
+            if ($(window).scrollTop() >= ($(this).offset().top - 40)) {
+                var activeLi = "." + $(this).attr("id");
+                $(".menuDocumentation li").removeClass('active');
+                $(activeLi).addClass("active");
+                return false;
+            }
+        });
+    });
+
+    if($(window).width() <= 768) {
+        $(".menuDocumentation li:not(:first-child)").hide();
+        $(".menuDocumentation li.automate").on("click",function(){
+            $(".menuDocumentation li:first-child").toggleClass('active');
+            $(".menuDocumentation li:not(:first-child)").toggle(400);
+        });
+    }
 
 </script>

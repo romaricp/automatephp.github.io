@@ -45,22 +45,6 @@ layout: default
 </footer>
 
 <script>
-    $("code").each(function() {
-        $(this).wrapAll('<pre class="line-numbers"></pre>');
-
-    });
-
-
-    $(".line-numbers").each(function() {
-        var divHeight = $(this).height();
-        var lineHeight = parseInt($(this).css('line-height'));
-        var lines = divHeight / lineHeight;
-        var $span = $('<span aria-hidden="true" class="line-numbers-rows">');
-        $('code', $(this)).append($span);
-        for(var i=0; i < lines; i++) {
-            $span.append("<span></span>");
-        }
-    });
 
     $(".right .inner h1").each(function() {
         var hisId = $(this).attr('id');

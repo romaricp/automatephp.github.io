@@ -12,8 +12,8 @@ layout: home
                 <div class="header">
                     <h1 class="logo">Automate, A deployment tool<span></span></h1>
                     <div class="line">
-                        <a class="btn_blue" href="{{ site.baseurl }}{% link doc/index.html %}">Documentation</a>
-                        <a class="btn_blue btn_git" href="https://github.com/automatephp/automatephp.github.io/blob/master/doc/index.md">
+                        <a class="btn_blue" href="{{ site.baseurl }}{% link doc/index.md %}">Documentation</a>
+                        <a class="btn_blue btn_git" href="https://github.com/automatephp/automate">
                             <i class="fa fa-github "></i>Github
                         </a>
                     </div>
@@ -102,7 +102,7 @@ layout: home
                 </div>
             </div>
         </div>
-        <a href="https://github.com/automatephp/automatephp.github.io/blob/master/doc/index.md" class="btn_orange btn_git"><i class="fa fa-github "></i>Github</a>
+        <a href="https://github.com/automatephp/automate" class="btn_orange btn_git"><i class="fa fa-github "></i>Github</a>
     </div>
 
     <div class="container_starting">
@@ -112,7 +112,7 @@ layout: home
             <div class="command">
                 <span>curl -LSs https</span>://automatephp.github.io/automate/installer.php | php
             </div>
-            <a href="{{ site.baseurl }}{% link doc/index.html %}" class="btn_orange">Documentation</a>
+            <a href="{{ site.baseurl }}{% link doc/index.md %}" class="btn_orange">Documentation</a>
         </div>
     </div>
 
@@ -155,19 +155,6 @@ layout: home
                     });
             }
         });
-
-            // var scene = new ScrollMagic.Scene({triggerElement: "#trigger", duration: 200})
-            //        .addTo(controller)
-            //        .on("update", function (e) {
-            //            $("#scrollDirection").text(e.target.controller().info("scrollDirection"));
-            //        })
-            //        .on("enter leave", function (e) {
-            //            $("#state").text(e.type == "enter" ? "inside" : "outside");
-            //        })
-            //        .on("start end", function (e) {
-            //            $("#lastHit").text(e.type == "start" ? "top" : "bottom");
-            //        })
-
 
         asciinema.player.js.CreatePlayer('player-container', '/assets/automate.cast', {
             'autoPlay': true,

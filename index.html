@@ -132,9 +132,9 @@ layout: home
 
             if($(window).width() > 768) {
                 var tl = new TimelineMax()
-                .add(TweenMax.to(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#fff"}),0)
+                .add(TweenMax.fromTo(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#2b3d50"}, {color: "#fff"}),0)
                 .add(TweenMax.to(".upper_home .ghost", 2,{backgroundColor: "#2b3d50"}),1)
-                .add(TweenMax.to(".upper_home .line a", 1, {color: "#fff", borderColor: "#fff"}),0)
+                .add(TweenMax.fromTo(".upper_home .line a", 1, {color: "#2b3d50", borderColor: "#2b3d50"}, {color: "#fff", borderColor: "#fff"}),0)
                 .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))

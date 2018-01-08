@@ -61,7 +61,7 @@ body {
     }
     &:hover {
         background: $blue;
-        color: #fff;
+        color: #fff !important;
         text-decoration: none;
     }
 }
@@ -121,20 +121,20 @@ body {
 .btn_git {
     margin-left: 20px;
     i {
-        color: $orange;
+        color: $orange !important;
         @include rem(14);
         margin-right: 4px;
         transition: all 0.3s;
     }
     &.btn_orange i {
-        color: #fff;
+        color: #fff !important;
     }
     &.btn_orange:hover i {
-        color: $orange;
+        color: $orange !important;
     }
     &.btn_white {
-        i { color: #fff; }
-        &:hover i { color: $blueGrey; }
+        i { color: #fff !important; }
+        &:hover i { color: $blueGrey !important; }
     }
 }
 

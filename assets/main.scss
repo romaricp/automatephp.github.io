@@ -45,6 +45,7 @@ body {
     display: inline-block;
     vertical-align: middle;
     border: 1px solid $blue;
+    border-color: $blue;
     background: transparent;
     box-sizing: border-box;
     padding: 12px 15px 14px;
@@ -386,6 +387,14 @@ body {
                 span { color: $pink; }
             }
         }
+    }
+
+    .fake {
+        position: absolute;
+        top: 100vh;
+        height: 1px;
+        width: 1px;
+        left: 0;
     }
 }
 

@@ -3,7 +3,7 @@ layout: home
 ---
 
 <div class="home">
-    <div class="container_code">
+    <div class="container_code section section1">
         <div class="spacing"></div>
         <div class="upper_home card1">
             <span class="fond"></span>
@@ -57,7 +57,9 @@ layout: home
         </div>
     </div>
 
-    <div class="container_advantages">
+    <div class="fake section section2"></div>
+
+    <div class="container_advantages section section3">
         <div class="advantages">
             <div class="item">
                 <h2>Consistency</h2>
@@ -105,7 +107,7 @@ layout: home
         <a href="https://github.com/automatephp/automate" class="btn_orange btn_git"><i class="fa fa-github "></i>Github</a>
     </div>
 
-    <div class="container_starting">
+    <div class="container_starting section section4">
         <div class="starting">
             <h2>Get starting</h2>
             <p>You can download the latest version of Automate with the following command</p>
@@ -136,7 +138,7 @@ layout: home
                 .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))
-                .add(TweenMax.to('.upper_home .info2', 2, {left: "0", opacity: "1"}));
+                .add(TweenMax.to('.upper_home .info2', 1, {left: "0", opacity: "1"}));
 
                 // build scene
                 var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "100%"})
@@ -165,26 +167,6 @@ layout: home
             'fontSize': "small",
             'theme': "tango"
         });
-
-        $(".btnDiscover").on("click", function(e){
-            e.preventDefault();
-            $("html, body").animate({
-                scrollTop: ($(".container_advantages").offset().top - $(window).height()),
-                easing: 'linear'
-            }, 1000);
-        });
-
-        $(".btnFeatures").on("click", function(e){
-            e.preventDefault();
-            scrollable = false;
-            $("html, body").animate({
-                scrollTop: $(".container_advantages").offset().top,
-                easing: 'linear'
-            }, 700, function() {
-                scrollable = true;
-            });
-        });
-
     </script>
 
 </div>

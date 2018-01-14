@@ -45,6 +45,7 @@ body {
     display: inline-block;
     vertical-align: middle;
     border: 1px solid $blue;
+    border-color: $blue;
     background: transparent;
     box-sizing: border-box;
     padding: 12px 15px 14px;
@@ -60,7 +61,7 @@ body {
     }
     &:hover {
         background: $blue;
-        color: #fff;
+        color: #fff !important;
         text-decoration: none;
     }
 }
@@ -120,20 +121,20 @@ body {
 .btn_git {
     margin-left: 20px;
     i {
-        color: $orange;
+        color: $orange !important;
         @include rem(14);
         margin-right: 4px;
         transition: all 0.3s;
     }
     &.btn_orange i {
-        color: #fff;
+        color: #fff !important;
     }
     &.btn_orange:hover i {
-        color: $orange;
+        color: $orange !important;
     }
     &.btn_white {
-        i { color: #fff; }
-        &:hover i { color: $blueGrey; }
+        i { color: #fff !important; }
+        &:hover i { color: $blueGrey !important; }
     }
 }
 
@@ -386,6 +387,14 @@ body {
                 span { color: $pink; }
             }
         }
+    }
+
+    .fake {
+        position: absolute;
+        top: 100vh;
+        height: 1px;
+        width: 1px;
+        left: 0;
     }
 }
 

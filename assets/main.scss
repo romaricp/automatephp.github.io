@@ -6,6 +6,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Anton');
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
 @font-face {
     font-family: 'Menlo';
@@ -39,6 +40,10 @@ body {
     }
 }
 
+.btnFeatures.animated:hover {
+    border-color: #fff;
+}
+
 .btn_blue {
     width: 160px;
     height: 40px;
@@ -63,6 +68,10 @@ body {
         background: $blue;
         color: #fff !important;
         text-decoration: none;
+    }
+    &.animated:hover {
+        background-color: #fff;
+        color: $blue !important;
     }
 }
 
@@ -484,17 +493,43 @@ body {
             }
         }
     }
+    pre.language-yaml,pre.language-bash:not(.highlight) {
+        background: url(img/pattern4.png) repeat top left transparent;
+        color: #F1F8F2;
+        border: none;
+        code {
+            background: none;
+            font-weight: 500 !important;
+            font-family: 'Inconsolata';
+        }
+    }
+}
+.docu + footer {
+    background: #fff;
 }
 
 footer {
-    background: $blueGrey;
-    @include clearfix;
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
-    padding: 50px 11.88%;
     position: relative;
-    z-index: 10;
+    height: 170px;
+    background: #EEEDED;
+    overflow: hidden;
+    box-sizing: border-box;
+    .inner {
+        background: $blueGrey;
+        @include clearfix;
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 50px 11.88%;
+        position: relative;
+        z-index: 10;
+        margin-top: 170px;
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
     .left {
         float: left;
         span {

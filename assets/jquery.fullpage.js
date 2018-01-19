@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    if($(".home").length) {
+    if($(".home:not(.documentation)").length) {
         var section = $('.section1');
         var lastScrollTop = 0;
         var animating = false;

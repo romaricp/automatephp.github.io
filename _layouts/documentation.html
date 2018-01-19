@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<main class="main-page">
+<main class="main-page docu">
     <div class="home documentation">
 
         <div class="container_code">
@@ -34,13 +34,15 @@ layout: default
 </main>
 
 <footer class="site-footer">
-    <div class="left">
-        <span>Sponsored by</span>
-        <a href="https://www.eolas.fr/" class="eolas">Eolas</a>
-    </div>
-    <div class="right">
-        <a href="/" class="btn_white">Home</a>
-        <a href="https://github.com/automatephp/automate" class="btn_white btn_git"><i class="fa fa-github"></i>Github</a>
+    <div class="inner">
+        <div class="left">
+            <span>Sponsored by</span>
+            <a href="https://www.eolas.fr/" class="eolas">Eolas</a>
+        </div>
+        <div class="right">
+            <a href="/" class="btn_white">Home</a>
+            <a href="https://github.com/automatephp/automate" class="btn_white btn_git"><i class="fa fa-github"></i>Github</a>
+        </div>
     </div>
 </footer>
 
@@ -56,6 +58,8 @@ layout: default
         li += "</li>";
         $(".menuDocumentation").append(li);
     });
+
+    $(".menuDocumentation li:first-child").html("Documentation");
 
     $(".menuDocumentation li:not(:first-child)").on("click", function() {
         var idLink = "#" + $(this).attr('class');
@@ -82,5 +86,25 @@ layout: default
             $(".menuDocumentation li:not(:first-child)").toggle(400);
         });
     }
+
+    var toBottom = false;
+
+    $(window).scroll(function() {
+        if (($('body').height() - 170) <= ($(window).height() + $(window).scrollTop())) {
+            if(!toBottom) {
+                toBottom = true;
+                $(".site-footer .inner").animate({
+                    marginTop: "0"
+                },400);
+            }
+        } else {
+            if(toBottom) {
+                toBottom = false;
+                $(".site-footer .inner").animate({
+                    marginTop: "170px"
+                },400);
+            }
+        }
+    });
 
 </script>

@@ -92,7 +92,7 @@ Address of your git repository. If you use a repository in https you can use a v
 repository: https://user:%git_password%@exemple.com
 ```
 
-### authentification
+### authentication
 
 It's possible to authenticate on the server with a password or with a private key. For the latter, you must define a path to the private key file and an optional passphrase (password) as the example above describes.
 

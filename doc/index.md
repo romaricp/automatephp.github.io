@@ -94,7 +94,7 @@ repository: https://user:%git_password%@exemple.com
 
 ### authentification
 
-It's possible to authenticate on the server with a password or with a private key. For the latter, you must define a path to the private key file and an optionnal passphrase (password) as the example above describes.
+It's possible to authenticate on the server with a password or with a private key. For the latter, you must define a path to the private key file and an optional passphrase (password) as the example above describes.
 
 
 ### platforms
@@ -118,7 +118,8 @@ platforms:
             prod-exemple-front-02:
                 host: prod-2.exemple.com
                 user: automate
-                password: %prod_password%
+                ssh_key: /keys/private     # A file path to private key
+                password: automate         # An optional passphrase
                 path: /home/wwwroot/
 ```
 

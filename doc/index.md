@@ -7,7 +7,7 @@ title: Documentation
 Automate allows you to automate your deployments to remote Linux servers simply.
 You can use Automate from your workstation or through an integration server like Travis or Gitlab-ci.
 
-# Installation 
+# Installation
 
 You can download the latest version of Automate with the following command:
 
@@ -55,7 +55,13 @@ platforms:
             prod-exemple-front-02:
                 host: prod-2.exemple.com
                 user: automate
-                password: %prod_password%
+                ssh_key: /path/to/key
+                path: /home/wwwroot/
+             prod-exemple-front-03:
+                host: prod-3.exemple.com
+                user: automate
+                ssh_key: /path/to/key
+                password: %passphrase%
                 path: /home/wwwroot/
 shared_files:
     - app/config/parameters.yml
@@ -80,17 +86,18 @@ post_deploy:
 repository: git@github.com:symfony/symfony-demo.git
 ```
 
-Address of your git repository. If you use a repository in https you can use a variable with the notation %variable_name% for the password like this: 
+Address of your git repository. If you use a repository in https you can use a variable with the notation %variable_name% for the password like this:
 
 ```YAML
 repository: https://user:%git_password%@exemple.com
 ```
 
+
 ### platforms
 
 List of platforms.
 
-You can configure several platforms ; a project must have at least one platform. 
+You can configure several platforms ; a project must have at least one platform.
 
 ```YAML
 platforms:
@@ -101,32 +108,33 @@ platforms:
             prod-exemple-front-01:
                 host: prod-1.exemple.com   # The domain name or the server's IP
                 user: automate             # The SSH user to be used for the deployment
-                password: %prod_password%  # Read more below in "The SSH password" section 
+                password: %prod_password%  # Read more below in "The SSH password" section
                 path: /home/wwwroot/       # The path on the remote server
-                port: 22                  # The SSH port (default:22)    
+                port: 22                   # The SSH port (default:22)    
             prod-exemple-front-02:
                 host: prod-2.exemple.com
                 user: automate
-                password: %prod_password%
+                ssh_key: /keys/private     # A file path to private key
+                password: %passphrase%     # An optional passphrase
                 path: /home/wwwroot/
 ```
 
-**The SSH password** 
+It's possible to authenticate on the server with a password or with a private key. For the latter, you must define a path to the private key file and an optional passphrase (password) as the example above describes.
 
 You can use a variable with the notation %variable_name% 
-If one variable is detected Automate will search for the value in an environment variable « AUTOMATE__variable_name ». 
-If the environment variable doesn't exist, Automate will ask to you to provide your password upon each deployment through in your terminal. 
+If one variable is detected Automate will search for the value in an environment variable « AUTOMATE__variable_name ».
+If the environment variable doesn't exist, Automate will ask to you to provide your password upon each deployment through in your terminal.
 
 ### shared_files
 
-The list of files to be shared with releases. 
+The list of files to be shared with releases.
 For example, some parameters files,..
 
 ```YAML
 shared_files:
     - app/config/parameters.yml
     - app/config/config.yml
-    - ... 
+    - ...
 ```
 
 ### shared_folders
@@ -137,7 +145,7 @@ For example some uploaded pictures,..
 ```YAML
 shared_files:
     - app/data
-    - ... 
+    - ...
 ```
 
 ### pre_deploy
@@ -159,7 +167,7 @@ post_deploy:
     - "php bin/console doctrine:cache:clear-result"
        only: eddv-exemple-front-01                     
 ```
-                  
+
 # Server Configuration
 
 Automate will create the following directory structure to the remote server:
@@ -181,7 +189,7 @@ Automate will create the following directory structure to the remote server:
 This is the schema of all your project's architecture
 You have to target your domain name inside the folder `/your/project/path/current/.`
 
-Each deployment will create a new subdirectory in the releases directory. Once the deployment is finished, a symlink named "current" will indicate the new version. 
+Each deployment will create a new subdirectory in the releases directory. Once the deployment is finished, a symlink named "current" will indicate the new version.
 
 # Launching a deployment
 
@@ -209,25 +217,25 @@ By default Automate will use the « default_branch » in the configuration file
  - **-c [path_of_config_file] (optional)**
 
 By default, Automate will search for the file `.automate.yml` in the current directory. You can specify it with the option ` -c /path/to/.automate.yml `
-      
+
 ## Automatically from your Gitlab or Travis environment      
 
-It's possible directly in Gitlab or Travis only to lunch automatically Automate after each `git push` or `merge request`. 
+It's possible directly in Gitlab or Travis only to lunch automatically Automate after each `git push` or `merge request`.
 
-For Gitlab, just add the file `.gitlab-ci.yml` in the root path of your project. 
+For Gitlab, just add the file `.gitlab-ci.yml` in the root path of your project.
 
 ```YAML
 stages:
   - ...
   - deploy
-  
+
 deploy:development:
   stage: deploy
-  image: "php"                                 #Use the right Docker container image you need 
+  image: "php"                                 #Use the right Docker container image you need
   only:
     - master
   script:
-    - "php automate.phar deploy development"   #Lunch the job ! 
+    - "php automate.phar deploy development"   #Lunch the job !
   environment:
     name: development
     url: http://prod-1.exemple.com
@@ -264,7 +272,7 @@ plugins:
 
 ## Clear cache system
 
-With Automate you have the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this: 
+With Automate you have the possibility to clear automatically the `opcache` or `apcu` or `apc` cache system, you should specify each technology available like this:
 
 ```YAML
 plugins:

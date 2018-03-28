@@ -132,7 +132,6 @@ layout: home
         var toBottom = false;
 
         $(function () {
-          
             if($(window).width() > 768) {
                 var tl = new TimelineMax()
                 .add(TweenMax.fromTo(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#2b3d50"}, {color: "#fff"}),0)
@@ -145,7 +144,6 @@ layout: home
                 .add(TweenMax.to('.upper_home .info2', 1, {display: 'block'}))
                 ;
 
-                // build scene
                 var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "0.1%"})
                     .setPin(".upper_home")
                     .setTween(tl)
@@ -190,5 +188,4 @@ layout: home
             'theme': "tango"
         });
     </script>
-
 </div>

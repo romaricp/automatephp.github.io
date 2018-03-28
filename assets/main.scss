@@ -166,8 +166,26 @@ body {
         opacity: 0;
     }
 }
-.home {
 
+.home {
+    .info h2 {
+        overflow: hidden;
+        border-right: .15em solid #fb320b;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .15em;
+        animation:
+            typing 2s steps(30, end),
+            blink-caret .75s step-end infinite;
+    }
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 375px; }
+    }
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: #fb320b; }
+    }
     .upper_home {
         display: flex;
         width: 100%;
@@ -223,8 +241,7 @@ body {
                 margin: 0;
                 margin-top: 80px;
                 margin-bottom: 40px;
-                display: block;
-                width: 100%;
+                display: inline-block;
                 box-sizing: border-box;
                 color: $blue;
                 @include rem(35);

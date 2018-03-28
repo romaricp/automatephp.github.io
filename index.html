@@ -140,9 +140,9 @@ layout: home
                 .add(TweenMax.fromTo(".upper_home .line a", 1, {color: "#2b3d50", borderColor: "#2b3d50"}, {color: "#fff", borderColor: "#fff"}),0)
                 .set(".upper_home .line a, .btnFeatures", {className:"+=animated"})
                 .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
-                .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}),0)
+                .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))
-                .add(TweenMax.to('.upper_home .info2', 1, {left: "0", opacity: "1"}))
+                .add(TweenMax.to('.upper_home .info2', 1, {display: 'block'}))
                 ;
 
                 // build scene

@@ -175,10 +175,10 @@ body {
         margin: 0 auto;
         letter-spacing: .15em;
         animation:
-            typing 2s steps(30, end),
+            typing1 2s steps(30, end),
             blink-caret .75s step-end infinite;
     }
-    @keyframes typing {
+    @keyframes typing1 {
         from { width: 0 }
         to { width: 375px; }
     }
@@ -186,6 +186,16 @@ body {
         from, to { border-color: transparent; }
         50% { border-color: #fb320b; }
     }
+    .info2 h2 {
+        animation:
+            typing2 3s steps(30, end),
+            blink-caret .75s step-end infinite;
+    }
+    @keyframes typing2 {
+        from { width: 0 }
+        to { width: 698px; }
+    }
+
     .upper_home {
         display: flex;
         width: 100%;
@@ -233,8 +243,7 @@ body {
                 left: 0;
                 opacity: 1;
                 &.info2 {
-                    left: -130%;
-                    opacity: 0;
+                    display: none;
                 }
             }
             h2 {

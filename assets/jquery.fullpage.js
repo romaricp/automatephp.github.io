@@ -1,25 +1,19 @@
 $(document).ready(function() {
     if($(".home:not(.documentation)").length) {
-        var section = $('.section1');
-        var lastScrollTop = 0;
-
         $(".btnDiscover").on("click", function(e){
-            e.preventDefault();
-            $("html, body").animate({
-                scrollTop: ($(".container_advantages").offset().top - $(window).height()),
-                easing: 'linear'
-            }, 500);
-            section = section.next();
+          $("html, body").animate({scrollTop: ($(window).scrollTop() + 2)});
         });
 
-        $(".btnFeatures").on("click", function(e){
-            e.preventDefault();
-            scrollable = false;
-            $("html, body").animate({
-                scrollTop: $(".container_advantages").offset().top,
-                easing: 'linear'
-            }, 500);
-            section = section.next();
+        $('a[href^="#"]').click(function(){
+            var the_id = $(this).attr("href");
+            if (the_id === '#') {
+                return;
+            }
+            $('html, body').animate({
+                scrollTop:$(the_id).offset().top
+            }, 'slow');
+
+            return false;
         });
     }
 });

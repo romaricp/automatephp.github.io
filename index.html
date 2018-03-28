@@ -27,7 +27,7 @@ layout: home
                 <div class="info info2">
                     <h2>One YAML file to organize everything</h2>
                     <p>Define all linux environment you need and all command line on each to deploy your application simply from the repository Git.</p>
-                    <a href="#" class="btnFeatures btn_orange">Features</a>
+                    <a href="#features" class="btnFeatures btn_orange">Features</a>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@ layout: home
         </div>
     </div>
 
-    <div class="fake section section2"></div>
+    <div class="fake section section2" id="features"></div>
 
     <div class="container_advantages section section3">
         <div class="advantages">
@@ -131,23 +131,22 @@ layout: home
         var scrolling = "PAUSED";
         var toBottom = false;
 
-        $(function () { // wait for document ready
-
+        $(function () {
+          
             if($(window).width() > 768) {
                 var tl = new TimelineMax()
                 .add(TweenMax.fromTo(".upper_home .left h2, .upper_home .left p, .upper_home .line a i", 1, {color: "#2b3d50"}, {color: "#fff"}),0)
-                .add(TweenMax.to(".upper_home .ghost", 2,{backgroundColor: "#2b3d50"}),1)
+                .add(TweenMax.to(".upper_home .ghost", 1,{backgroundColor: "#2b3d50"}),1)
                 .add(TweenMax.fromTo(".upper_home .line a", 1, {color: "#2b3d50", borderColor: "#2b3d50"}, {color: "#fff", borderColor: "#fff"}),0)
                 .set(".upper_home .line a, .btnFeatures", {className:"+=animated"})
                 .add(TweenMax.to(".upper_home .left .logo span", 1, {opacity: 1}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {left: "-130%", opacity: "0"}),0)
                 .add(TweenMax.to('.upper_home .info:not(.info2)', 1, {display: 'none'}))
-                .add(TweenMax.to('.upper_home .info2', 1, {left: "0", opacity: "1"}));
-
-
+                .add(TweenMax.to('.upper_home .info2', 1, {left: "0", opacity: "1"}))
+                ;
 
                 // build scene
-                var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "100%"})
+                var scene = new ScrollMagic.Scene({triggerElement: ".container_spacing", duration: "0.1%"})
                     .setPin(".upper_home")
                     .setTween(tl)
                     .addTo(controller)
@@ -155,7 +154,6 @@ layout: home
 
                     })
                     .on("progress", function (e) {
-                        var percentage = (e.progress.toFixed(3) * 100);
                         if(e.target.controller().info("scrollDirection") != scrolling && scrollable) {
                             scrolling = e.target.controller().info("scrollDirection");
                             $('#card').flip('toggle');
@@ -179,7 +177,6 @@ layout: home
                         }
                     }
                 });
-
             }
         });
 

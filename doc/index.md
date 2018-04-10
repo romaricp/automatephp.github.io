@@ -218,6 +218,22 @@ By default Automate will use the « default_branch » in the configuration file
 
 By default, Automate will search for the file `.automate.yml` in the current directory. You can specify it with the option ` -c /path/to/.automate.yml `
 
+## From the target server
+
+The following command allows you to launch the deployment on localy server 
+
+```bash
+php automate.phar run /home/wwwroot master
+```
+
+```bash
+php automate.phar run ‹path› [gitref] -c [path_of_config_file]
+```
+
+ - **path**
+
+The path to deploy the project localy
+
 ## Automatically from your Gitlab or Travis environment      
 
 It's possible directly in Gitlab or Travis only to lunch automatically Automate after each `git push` or `merge request`.

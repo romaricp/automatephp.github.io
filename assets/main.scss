@@ -170,31 +170,9 @@ body {
 .home {
     .info h2 {
         overflow: hidden;
-        border-right: .15em solid #fb320b;
-        white-space: nowrap;
         margin: 0 auto;
-        letter-spacing: .15em;
-        animation:
-            typing1 2s steps(30, end),
-            blink-caret .75s step-end infinite;
     }
-    @keyframes typing1 {
-        from { width: 0 }
-        to { width: 375px; }
-    }
-    @keyframes blink-caret {
-        from, to { border-color: transparent; }
-        50% { border-color: #fb320b; }
-    }
-    .info2 h2 {
-        animation:
-            typing2 3s steps(30, end),
-            blink-caret .75s step-end infinite;
-    }
-    @keyframes typing2 {
-        from { width: 0 }
-        to { width: 698px; }
-    }
+
     .upper_home {
         display: flex;
         width: 100%;
@@ -255,7 +233,7 @@ body {
                 @include rem(35);
                 font-family: "Anton";
                 font-weight: 400;
-                line-height: 1em;
+                line-height: 1.4em;
             }
             p {
                 @include rem(18);
